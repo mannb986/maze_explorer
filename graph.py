@@ -27,17 +27,17 @@ class Graph:
     print("")
 
 def build_graph():
-  graph = Graph()
+    graph = Graph()
   
   # MAKE ROOMS INTO VERTICES BELOW...
-
+    entrance = Vertex("entrance")
 
   # ADD ROOMS TO GRAPH BELOW...
-  
+    graph.add_vertex(entrance)
 
   # ADD EDGES BETWEEN ROOMS BELOW...
   
 
   # DON'T CHANGE THIS CODE
-  graph.print_map()
-  return graph
+    graph.print_map()
+    return graph
