@@ -13,7 +13,28 @@ class Graph:
 
   def explore(self):
     print("Exploring the graph....\n")
-    #FILL IN EXPLORE METHOD BELOW
+    current_room = 'entrance'
+    path_total = 0
+    print("\nStarting off at the {0}\n".format(current_room))
+
+    while current_room != 'treasure room':
+        node = self.graph_dict[current_room]
+        for connected_room, weight in node.edges.items():
+            key = connected_room[:1]
+            print("enter {0} for {1}: {2} cost".format(key, connected_room, weight))
+        valid_choices = [room[:1] for room in node.edges.keys()]
+        print("\nYou have accumlated: {0} cost".format(path_total))
+        choice = input("\nWhich room do you move to?")
+        if choice not in valid_choices:
+            print("please select from these letters: {0}".format(valid_choices))
+        else:
+            for room in node.edges.keys():
+                if room.startswith(choice):
+                    current_room = room
+                    path_total += node.edges[room]
+            print("\n*** You have chosen: {0} ***\n".format(current_room))
+    
+    print("Made it to the treasure room with {0} cost".format(path_total))
     
   
   def print_map(self):
@@ -34,7 +55,7 @@ def build_graph():
     ante_chamber = Vertex("ante-chamber")
     kings_room = Vertex("king's room")
     grand_gallery = Vertex("grand gallery")
-    treasure_room = Vertex("treasure_room")
+    treasure_room = Vertex("treasure room")
 
   # ADD ROOMS TO GRAPH BELOW...
     graph.add_vertex(entrance)
